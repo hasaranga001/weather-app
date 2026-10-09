@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="hero">
+        <div class="brand">☀️ Weather Dashboard</div>
+        <p>Live weather information for any city</p>
+
+        <form action="/" method="get" class="search">
+            <input type="text" name="city"
+                   value="{{ city }}"
+                   placeholder="Search for a city..."
+                   maxlength="100" required>
+            <button type="submit">Get Weather</button>
+        </form>
+    </header>
+
+    <main class="container">
+        {% if error %}
+            <section class="card error">
+                <h2>Weather unavailable</h2>
+                <p>{{ error }}</p>
+            </section>
+        {% endif %}
+
+        {% if weather %}
+            <section class="card main-weather">
+                <div>
+                    <p class="eyebrow">CURRENT CONDITIONS</p>
+                    <h1>{{ weather.city }}, {{ weather.country }}</h1>
+                    <p class="muted">Updated: {{ weather.time }}</p>
+                    <div class="temperature">
+                        {{ weather.temperature }}°C
+                    </div>
+                    <h2>{{ weather.condition }}</h2>
+                    <p class="muted">
+                        Feels like {{ weather.feels_like }}°C
+                    </p>
+                </div>
+            </section>
+
+            <section class="metrics">
+                <article class="card metric">
+                    <span class="metric-icon">💧</span>
+                    <p>Humidity</p>
+                    <h2>{{ weather.humidity }}%</h2>
+                </article>
+
+                <article class="card metric">
+                    <span class="metric-icon">💨</span>
+                    <p>Wind speed</p>
+                    <h2>{{ weather.wind }} km/h</h2>
+                </article>
+
+                <article class="card metric">
+                    <span class="metric-icon">🌧️</span>
+                    <p>Precipitation</p>
+                    <h2>{{ weather.precipitation }} mm</h2>
+                </article>
+            </section>
+        {% endif %}
+
+        <footer>
+            Weather data provided by
+            <a href="https://open-meteo.com/">Open-Meteo</a>.
+        </footer>
+    </main>
+</body>
+</html>
+

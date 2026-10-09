@@ -1,0 +1,160 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #172554;
+    background: linear-gradient(135deg, #dbeafe, #f8fafc);
+    min-height: 100vh;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 80px;
+    color: white;
+    background: linear-gradient(120deg, #2563eb, #38bdf8);
+}
+
+.brand {
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 800;
+}
+
+.hero p {
+    margin: 12px 0 30px;
+    font-size: 18px;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+    max-width: 650px;
+    margin: auto;
+    padding: 8px;
+    background: white;
+    border-radius: 14px;
+}
+
+.search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    padding: 12px;
+    font-size: 16px;
+    color: #172554;
+}
+
+.search button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    color: white;
+    background: #2563eb;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search button:hover {
+    background: #1d4ed8;
+}
+
+.container {
+    width: min(1000px, 92%);
+    margin: -45px auto 30px;
+    position: relative;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.09);
+}
+
+.main-weather {
+    margin-bottom: 20px;
+}
+
+.eyebrow {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.main-weather h1 {
+    font-size: clamp(24px, 4vw, 34px);
+    margin-bottom: 8px;
+}
+
+.muted {
+    color: #64748b;
+}
+
+.temperature {
+    font-size: clamp(60px, 10vw, 90px);
+    font-weight: 800;
+    letter-spacing: -4px;
+    margin-top: 20px;
+}
+
+.main-weather h2 {
+    margin-bottom: 6px;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.metric {
+    padding: 24px;
+}
+
+.metric-icon {
+    font-size: 28px;
+}
+
+.metric p {
+    color: #64748b;
+}
+
+.metric h2 {
+    font-size: clamp(17px, 2.5vw, 24px);
+    overflow-wrap: anywhere;
+}
+
+.error {
+    margin-bottom: 20px;
+    color: #b91c1c;
+}
+
+footer {
+    padding: 30px 0;
+    text-align: center;
+    color: #64748b;
+}
+
+footer a {
+    color: #2563eb;
+}
+
+@media (max-width: 650px) {
+    .hero {
+        padding-top: 35px;
+    }
+
+    .search {
+        flex-direction: column;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+}
+

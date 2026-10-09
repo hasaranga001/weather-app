@@ -1,0 +1,21 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return """
+    <html>
+      <head>
+        <title>My Weather Dashboard</title>
+      </head>
+      <body>
+        <h1>Welcome to My Weather Dashboard!</h1>
+        <p>This website is running on Rocky Linux.</p>
+        <p>Built with Python and Flask.</p>
+      </body>
+    </html>
+    """
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
