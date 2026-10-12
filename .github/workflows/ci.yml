@@ -11,6 +11,27 @@ permissions:
   contents: read
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      docker: ${{ steps.filter.outputs.docker }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Detect Docker image changes
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            docker:
+              - 'app.py'
+              - 'Dockerfile'
+              - '.dockerignore'
+              - 'requirements.txt'
+              - 'templates/**'
+              - 'static/**'
+
   test:
     runs-on: ubuntu-latest
 
@@ -36,8 +57,11 @@ jobs:
         run: python -m pytest -v
 
   build-and-push:
-    needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, changes]
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      needs.changes.outputs.docker == 'true'
     runs-on: ubuntu-latest
 
     permissions:
